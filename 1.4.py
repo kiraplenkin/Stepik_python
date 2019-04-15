@@ -10,6 +10,19 @@ print('\nTask 9')
 # create foo global
 # add foo b
 
+
+def create(namespace, parent):
+    pass
+
+
+def add(namespace, var):
+    pass
+
+
+def get(namespace, var):
+    pass
+
+
 n = int(input())
 
 parent_namespaces = {
@@ -23,11 +36,11 @@ child_namespaces = {
 for i in range(n):
     operation, namespace, arg = input().split()
     if operation == 'create':
-        pass child_namespaces[arg]
+        create(namespace, parent)
     elif operation == 'add':
-        pass # child_namespaces[namespace] = arg
+        add(namespace, var)
     elif operation == 'get':
-        pass
+        get(namespace, var)
 
     print(child_namespaces.items())
 
