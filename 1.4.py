@@ -1,13 +1,6 @@
-# get <namespace> <var> – получить имя пространства, из которого будет взята переменная <var> при запросе из
-# пространства <namespace>, или None, если такого пространства не существует
-
-# add global a
-# create foo global
-# add foo b
-
-
 def create(namespace, var):
-    scopes.update({namespace: {'parent': var, 'variables': set()}})
+    scopes.update({namespace: {'parent': var,
+                               'variables': set()}})
 
 
 def add(namespace, var):
@@ -15,13 +8,16 @@ def add(namespace, var):
 
 
 def get(namespace, var):
-    pass
+    if var in scopes[namespace]['variables']:
+        return print(namespace)
+    else:
+        get(scopes[namespace]['parent'], var)
 
 
-n = int(input())
+scopes = {'global': {'parent': None,
+                     'variables': set()}}
 
-scopes = {'global': {'parent': None, 'variables': set()}}
-
+n = int(input('Set a number: '))
 for i in range(n):
     operation, namespace, var = input().split()
     if operation == 'create':
@@ -30,6 +26,3 @@ for i in range(n):
         add(namespace, var)
     elif operation == 'get':
         get(namespace, var)
-
-    print(scopes.items())
-
