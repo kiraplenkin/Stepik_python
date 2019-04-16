@@ -1,8 +1,3 @@
-############################
-print('\nTask 9')
-
-# create <namespace> <parent> –  создать новое пространство имен с именем <namespace> внутри пространства <parent>
-# add <namespace> <var> – добавить в пространство <namespace> переменную <var>
 # get <namespace> <var> – получить имя пространства, из которого будет взята переменная <var> при запросе из
 # пространства <namespace>, или None, если такого пространства не существует
 
@@ -11,12 +6,12 @@ print('\nTask 9')
 # add foo b
 
 
-def create(namespace, parent):
-    pass
+def create(namespace, var):
+    scopes.update({namespace: {'parent': var, 'variables': set()}})
 
 
 def add(namespace, var):
-    pass
+    scopes[namespace]['variables'].add(var)
 
 
 def get(namespace, var):
@@ -25,22 +20,16 @@ def get(namespace, var):
 
 n = int(input())
 
-parent_namespaces = {
-    'None': 'global'
-}
-
-child_namespaces = {
-    'global': []
-}
+scopes = {'global': {'parent': None, 'variables': set()}}
 
 for i in range(n):
-    operation, namespace, arg = input().split()
+    operation, namespace, var = input().split()
     if operation == 'create':
-        create(namespace, parent)
+        create(namespace, var)
     elif operation == 'add':
         add(namespace, var)
     elif operation == 'get':
         get(namespace, var)
 
-    print(child_namespaces.items())
+    print(scopes.items())
 
