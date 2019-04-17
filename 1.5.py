@@ -21,29 +21,19 @@ class MoneyBox:
 
 class Buffer:
     def __init__(self):
-        self.count = 0
-        self.sum = 0
         self.buf = []
 
     def add(self, *a):
-        for i in range(len(a)):
-            if self.count < 5:
-                self.buf.append(a[i])
-                self.count += 1
-            else:
+        i = 0
+        while i < len(a):
+            self.buf.append((a[i]))
+            if len(self.buf) >= 5:
                 self.sum = 0
                 for n in range(len(self.buf)):
                     self.sum += self.buf[n]
                 print(self.sum)
-                self.buf = []
-                self.count = 0
-                self.sum = 0
+                self.buf = self.buf[5:]
+            i += 1
 
     def get_current_part(self):
-        return print(self.buf)  # ! Change to return self.buf
-
-
-x = Buffer()
-x.add(1, 2, 3, 4, 5, 6, 7)
-x.get_current_part()
-
+        return self.buf
