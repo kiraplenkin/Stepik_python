@@ -26,7 +26,7 @@ class Buffer:
     def add(self, *a):
         i = 0
         while i < len(a):
-            self.buf.append((a[i]))
+            self.buf.append(a[i])
             if len(self.buf) >= 5:
                 self.sum = 0
                 for n in range(len(self.buf)):
