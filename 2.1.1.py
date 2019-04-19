@@ -22,6 +22,7 @@ for _ in range(n):
     parents = inpt[2:]
     exceptions[child] = parents
 
+
 m = int(input())
 for _ in range(m):
     throwing = input()
