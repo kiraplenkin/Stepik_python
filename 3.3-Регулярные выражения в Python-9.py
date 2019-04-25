@@ -1,7 +1,7 @@
 import sys
 import re
 
-pattern = r'((\bcat\b).*)'
+pattern = r'z...z'
 
 for line in sys.stdin:
     line = line.rstrip()
